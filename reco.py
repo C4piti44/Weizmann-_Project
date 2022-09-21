@@ -1,9 +1,8 @@
-from sre_constants import SUCCESS
 import cv2
 import numpy as np
 
-lower = np.array([0,150,20])
-upper = np.array([14,255,255])
+lower = np.array([30,100,20])
+upper = np.array([83,255,255])
 
 video = cv2.VideoCapture(0)
 
@@ -12,7 +11,18 @@ while True:
     image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(image , lower , upper)
 
+    contours , hierarchy =cv2.findContours(mask , cv2.RETR_EXTERNAL , cv2.CHAIN_APPROX_SIMPLE)
+
+    if len(contours)!=0:
+        for contour in contours:
+            if cv2.contourArea(contour) > 400:
+                x ,y, w ,h = cv2.boundingRect(contour)
+                cv2.rectangle(img , (x,y) , (x+w , y+h ) , (0,0,255))
+                cv2.putText(img, 'follow', (x - 60, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1, cv2.LINE_AA)
+
     cv2.imshow("mask" , mask)
     cv2.imshow("webcam" , img)
+
+    cv2.waitKey(1)
 
    
