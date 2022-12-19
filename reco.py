@@ -12,7 +12,7 @@ def finding_shape(img , contour):
         cv2.putText( img , "object has been detected" , (50,50) ,font, 1 , (255,255,255))
 
 # This function dedect the object in the space.
-# The function draw a rectangle on the dedeted object. 
+# The function draw a rectangle on the dedeted object.
 
 def get_coords(contour):
      return cv2.boundingRect(contour)
@@ -32,7 +32,7 @@ upper = np.array([83,255,255])
 video = cv2.VideoCapture(0)
 
 while True:
-    _ , img = video.read()
+    _, img = video.read()
     image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(image , lower , upper)
 
@@ -44,8 +44,10 @@ while True:
                 finding_shape(img , contour)
                 object_position(img , contour)
                 coords = get_coords(contour)
+                if (img.shape[1])/2 - 20  < coords[0] and coords[0] < (img.shape[1])/2 + 20 :
+                   print("not in the middle")
 
-            
+
     cv2.imshow("mask" , mask)
     cv2.imshow("webcam" , img)
 
