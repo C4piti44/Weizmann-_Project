@@ -1,3 +1,4 @@
+#https://www.collvy.com/blog/controlling-dc-motor-with-raspberry-pi
 import rpi.gpio as io
 import time
 
