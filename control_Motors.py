@@ -1,38 +1,44 @@
-#https://www.collvy.com/blog/controlling-dc-motor-with-raspberry-pi
-import rpi.gpio as io
+import RPi.GPIO as GPIO          
 import time
 
-io.setwarnings(False)
+# Right Motor
+in1 = 5
+in2 = 6
+en_a = 25
 
-io.setmode(io.BOARD)
+# Left motor
+in3 =12
+in4 = 13
+en_b = 4
 
-io.setup(29, io.OUT) #purple
-io.setup(31, io.OUT) #grey
-io.setup(33, io.OUT) #brown
-io.setup(32, io.OUT) #orange
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
-pin_29 = io.PWM(29, 100)
-pin_31 = io.PWM(31, 100)
-pin_33 = io.PWM(33, 100)
-pin_32 = io.PWM(32, 100)
+GPIO.setup(in1,GPIO.OUT)
+GPIO.setup(in2,GPIO.OUT)
+GPIO.setup(en_a,GPIO.OUT)
 
-pin_29.start(0)
-pin_31.start(0)
-pin_33.start(0)
-pin_32.start(0)
+GPIO.setup(in3,GPIO.OUT)
+GPIO.setup(in4,GPIO.OUT)
+GPIO.setup(en_b,GPIO.OUT)
 
-pin_29.ChangedutyCycle(100)
-time.sleep(3)
-pin_29.stop()
+q=GPIO.PWM(en_a,100)
+p=GPIO.PWM(en_b,100)
 
-pin_31.ChangedutyCycle(100)
-time.sleep(3)
-pin_31.stop()
+p.start(95)
+q.start(95)
 
-pin_32.ChangedutyCycle(100)
-time.sleep(3)
-pin_32.stop()
+GPIO.output(in2,GPIO.HIGH)
+GPIO.output(in3,GPIO.HIGH)
+time.sleep(4)
+GPIO.output(in2,GPIO.LOW)
+GPIO.output(in3,GPIO.LOW)
 
-pin_33.ChangedutyCycle(100)
-time.sleep(3)
-pin_33.stop()
+
+GPIO.output(in1,GPIO.HIGH)
+GPIO.output(in4,GPIO.HIGH)
+time.sleep(4)
+GPIO.output(in1,GPIO.LOW)
+GPIO.output(in4,GPIO.LOW)
+
+    
