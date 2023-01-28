@@ -101,45 +101,48 @@ def object_position(img, contour):
     cv2.putText(img, 'follow', (x - 60, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1, cv2.LINE_AA)
 
 
-font = cv2.FONT_HERSHEY_SIMPLEX
-lower = np.array([30, 100, 20])
-upper = np.array([83, 255, 255])
+def main():
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    lower = np.array([30, 100, 20])
+    upper = np.array([83, 255, 255])
 
-video = cv2.VideoCapture(0)
+    video = cv2.VideoCapture(0)
 
-while True:
-    _, img = video.read()
-    image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(image, lower, upper)
+    while True:
+        _, img = video.read()
+        image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(image, lower, upper)
 
-    cv2.line(img, (500, 0), (500, 720), (255, 0, 0), 2)
-    cv2.line(img, (780, 0), (780, 720), (255, 0, 0), 2)
-    # cv2.line(img, (650, 0), (650, 720), (255, 0, 0), 2)
-    # cv2.line(img, ((img.shape[1]) / 2 + 30, 0), ((img.shape[1]) / 2 + 30, img.shape[0]), (255, 0, 0), 2)
+        # cv2.line(img, (500, 0), (500, 720), (255, 0, 0), 2)
+        # cv2.line(img, (780, 0), (780, 720), (255, 0, 0), 2)
 
-    contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    if len(contours) != 0:
-        for contour in contours:
-            area = cv2.contourArea(contour)  # the area of the object
-            if area > 300:
-                finding_shape(img, contour)
-                object_position(img, contour)
-                coords = get_coords(contour)
-                center_p = center_point(contour)
-                velocity_of_the_robot = velocity(area)
-                p.start(velocity_of_the_robot)
-                q.start(velocity_of_the_robot)
-                if (img.shape[1]) / 2 - 140 > center_p[0]:
-                    q.start(45)
-                    p.start(45)
-                    turn_right()
-                if (img.shape[1]) / 2 + 140 < center_p[0]:
-                    q.start(45)
-                    p.start(45)
-                    turn_left()
+        if len(contours) != 0:
+            for contour in contours:
+                area = cv2.contourArea(contour)  # the area of the object
+                if area > 300:
+                    finding_shape(img, contour)
+                    object_position(img, contour)
+                    coords = get_coords(contour)
+                    center_p = center_point(contour)
+                    velocity_of_the_robot = velocity(area)
+                    p.start(velocity_of_the_robot)
+                    q.start(velocity_of_the_robot)
+                    if (img.shape[1]) / 2 - 140 > center_p[0]:
+                        q.start(45)
+                        p.start(45)
+                        turn_right()
+                    if (img.shape[1]) / 2 + 140 < center_p[0]:
+                        q.start(45)
+                        p.start(45)
+                        turn_left()
 
-    cv2.imshow("mask", mask)
-    cv2.imshow("webcam", img)
+        cv2.imshow("mask", mask)
+        cv2.imshow("webcam", img)
 
-    cv2.waitKey(1)
+        cv2.waitKey(1)
+
+
+if __name__ == '__main__':
+    main()
