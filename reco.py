@@ -103,8 +103,8 @@ def object_position(img, contour):
 
 def main():
     font = cv2.FONT_HERSHEY_SIMPLEX
-    lower = np.array([30, 100, 20])
-    upper = np.array([83, 255, 255])
+    lower = np.array([35, 80, 20])
+    upper = np.array([75, 255, 255])
 
     video = cv2.VideoCapture(0)
 
