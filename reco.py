@@ -63,9 +63,9 @@ min_velocity = 0
 # calculating the velocity accordingly to the area of the object
 def velocity(object_area):
     if object_area < min_area:
-        object_area = min_area
+        return 0
     elif object_area > max_area:
-        object_area = max_area
+        return 0
 
     # calculate speed using inverted linear mapping
     speed = max_velocity - (object_area - min_area) * (max_velocity - min_velocity) / (max_area - min_area)
