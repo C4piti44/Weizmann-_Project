@@ -53,7 +53,7 @@ def move_backwards():
     GPIO.output(in4, GPIO.HIGH)
 
 
-# variables that help to calculate the linear function
+# variables to calculate the linear function
 min_area = 2500
 max_area = 130000
 max_velocity = 95
@@ -122,8 +122,8 @@ def main():
             for contour in contours:
                 area = cv2.contourArea(contour)  # the area of the object
                 if area > 300:
-                    finding_shape(img, contour)
-                    object_position(img, contour)
+                    #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
+                    #object_position(img, contour) -> i don't have to open a window, it takes computation power.
                     coords = get_coords(contour)
                     center_p = center_point(contour)
                     velocity_of_the_robot = velocity(area)
