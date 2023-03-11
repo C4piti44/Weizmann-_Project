@@ -44,13 +44,13 @@ def turn_left():
 # Drive forward
 def move_forward():
     GPIO.output(in1, GPIO.HIGH)
-    GPIO.output(in3, GPIO.HIGH)
+    GPIO.output(in4, GPIO.HIGH)
 
 
 # Drive backward
 def move_backwards():
     GPIO.output(in2, GPIO.HIGH)
-    GPIO.output(in4, GPIO.HIGH)
+    GPIO.output(in3, GPIO.HIGH)
 
 
 # variables to calculate the linear function
