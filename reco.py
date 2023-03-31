@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import RPi.GPIO as GPIO
+import time
 
 # setup the pins on the raspberry pi
 # Right Motor in1 is for forward and in2 is backward '''might not be true'''
@@ -122,6 +123,7 @@ def main():
             for contour in contours:
                 area = cv2.contourArea(contour)  # the area of the object
                 if area > 300:
+                    time.sleep(1)
                     #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
                     #object_position(img, contour) -> i don't have to open a window, it takes computation power.
                     coords = get_coords(contour)
