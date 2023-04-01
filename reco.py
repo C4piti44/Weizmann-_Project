@@ -128,14 +128,14 @@ def main():
                     #object_position(img, contour) -> i don't have to open a window, it takes computation power.
                     coords = get_coords(contour)
                     center_p = center_point(contour)
-                    if (img.shape[1]) / 2 - 140 > center_p[0]:
-                        q.start(45)
-                        p.start(45)
-                        turn_right()
-                    elif (img.shape[1]) / 2 + 140 < center_p[0]:
+                    if (img.shape[1]) / 2 - 180 > center_p[0]:
                         q.start(45)
                         p.start(45)
                         turn_left()
+                    elif (img.shape[1]) / 2 + 180 < center_p[0]:
+                        q.start(45)
+                        p.start(45)
+                        turn_right()
                     else:
                         velocity_of_the_robot = velocity(area)
                         p.start(velocity_of_the_robot)
