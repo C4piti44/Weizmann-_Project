@@ -32,14 +32,14 @@ p = GPIO.PWM(en_b, 90)  # determine the frequency which we gonna send the pulses
 
 # Turns the robot left
 def turn_right():
-    GPIO.output(in1, GPIO.LOW)
-    GPIO.output(in3, GPIO.HIGH)
+    GPIO.output(in4, GPIO.LOW)
+    GPIO.output(in1, GPIO.HIGH)
 
 
 # Turns the robot left
 def turn_left():
-    GPIO.output(in1, GPIO.HIGH)
-    GPIO.output(in3, GPIO.LOW)
+    GPIO.output(in4, GPIO.HIGH)
+    GPIO.output(in1, GPIO.LOW)
 
 
 # Drive forward
