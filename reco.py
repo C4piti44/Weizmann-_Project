@@ -124,18 +124,17 @@ def main():
             for contour in contours:
                 area = cv2.contourArea(contour)  # the area of the object
                 if area > 300:
-                    time.sleep(1)
                     #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
                     #object_position(img, contour) -> i don't have to open a window, it takes computation power.
                     coords = get_coords(contour)
                     center_p = center_point(contour)
                     if (img.shape[1]) / 2 - 180 > center_p[0]:
-                        q.start(45)
-                        p.start(45)
+                        q.start(80)
+                        p.start(80)
                         turn_left()
                     elif (img.shape[1]) / 2 + 180 < center_p[0]:
-                        q.start(45)
-                        p.start(45)
+                        q.start(80)
+                        p.start(80)
                         turn_right()
                     else:
                         velocity_of_the_robot = velocity(area)
