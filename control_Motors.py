@@ -10,6 +10,8 @@ en_a = 25
 in3 =12
 in4 = 13
 en_b = 4
+ 
+    
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -30,15 +32,36 @@ q.start(95)
 
 GPIO.output(in2,GPIO.HIGH)
 GPIO.output(in3,GPIO.HIGH)
-time.sleep(4)
+time.sleep(3)
 GPIO.output(in2,GPIO.LOW)
 GPIO.output(in3,GPIO.LOW)
 
 
+
+
 GPIO.output(in1,GPIO.HIGH)
 GPIO.output(in4,GPIO.HIGH)
-time.sleep(4)
+time.sleep(3)
 GPIO.output(in1,GPIO.LOW)
 GPIO.output(in4,GPIO.LOW)
 
-    
+
+
+
+p.start(45)
+q.start(45)
+#turn right
+
+GPIO.output(in1, GPIO.LOW)
+GPIO.output(in3, GPIO.HIGH)
+time.sleep(2)
+GPIO.output(in1, GPIO.LOW)
+GPIO.output(in3, GPIO.LOW)
+
+# turn Left
+GPIO.output(in1, GPIO.HIGH)
+GPIO.output(in3, GPIO.LOW)
+time.sleep(2)
+GPIO.output(in1, GPIO.LOW)
+GPIO.output(in3, GPIO.LOW)
+
