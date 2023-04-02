@@ -107,6 +107,7 @@ def main():
     lower = np.array([87, 80, 20])
     upper = np.array([105, 255, 255])
 
+
     video = cv2.VideoCapture(0)
 
     while True:
