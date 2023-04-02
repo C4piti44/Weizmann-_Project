@@ -70,7 +70,7 @@ def velocity(object_area):
 
     # calculate speed using inverted linear mapping
     speed = max_velocity - (object_area - min_area) * (max_velocity - min_velocity) / (max_area - min_area)
-    return speed
+    return int(speed)
 
 
 # This function detect the object's vertices.
