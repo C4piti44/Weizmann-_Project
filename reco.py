@@ -107,14 +107,12 @@ def main():
     lower = np.array([87, 80, 20])
     upper = np.array([105, 255, 255])
 
-
     video = cv2.VideoCapture(0)
 
     while True:
         _, img = video.read()
         image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(image, lower, upper)
-
         # cv2.line(img, (500, 0), (500, 720), (255, 0, 0), 2)
         # cv2.line(img, (780, 0), (780, 720), (255, 0, 0), 2)
 
@@ -141,7 +139,6 @@ def main():
                         p.start(velocity_of_the_robot)
                         q.start(velocity_of_the_robot)
                         move_forward()
-
                         
         cv2.imshow("mask", mask)
         cv2.imshow("webcam", img)
