@@ -11,7 +11,7 @@ en_a = 25
 
 # Left Motor in3 is for forward and in4 is backward '''might not be true'''
 in3 = 12
-in4 = 13
+in4 = 14
 en_b = 4
 
 GPIO.setmode(GPIO.BCM)  # addressing the pins with their gpio number and not the physical pun number.
@@ -32,20 +32,20 @@ p = GPIO.PWM(en_b, 90)  # determine the frequency which we gonna send the pulses
 
 # Turns the robot left
 def turn_right():
-    GPIO.output(in4, GPIO.LOW)
-    GPIO.output(in1, GPIO.HIGH)
+    GPIO.output(in2, GPIO.LOW)
+    GPIO.output(in3, GPIO.HIGH)
 
 
 # Turns the robot left
 def turn_left():
-    GPIO.output(in4, GPIO.HIGH)
-    GPIO.output(in1, GPIO.LOW)
+    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in3, GPIO.LOW)
 
 
 # Drive forward
 def move_forward():
-    GPIO.output(in1, GPIO.HIGH)
-    GPIO.output(in4, GPIO.HIGH)
+    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in3, GPIO.HIGH)
 
 
 # Drive backward
