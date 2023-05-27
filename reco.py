@@ -106,6 +106,9 @@ def main():
     font = cv2.FONT_HERSHEY_SIMPLEX
     lower = np.array([87, 80, 20])
     upper = np.array([105, 255, 255])
+    min_area_area = 300
+    left_boundary = (img.shape[1]) / 2 - 180
+    right_boundary = (img.shape[1]) / 2 + 180
 
     video = cv2.VideoCapture(0)
 
@@ -121,16 +124,16 @@ def main():
         if len(contours) != 0:
             for contour in contours:
                 area = cv2.contourArea(contour)  # the area of the object
-                if area > 300:
+                if area > min_area_area:
                     #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
                     #object_position(img, contour) -> i don't have to open a window, it takes computation power.
                     coords = get_coords(contour)
                     center_p = center_point(contour)
-                    if (img.shape[1]) / 2 - 180 > center_p[0]:
+                    if left_boundry > center_p[0]:
                         q.start(80)
                         p.start(80)
                         turn_left()
-                    elif (img.shape[1]) / 2 + 180 < center_p[0]:
+                    elif right_boundry < center_p[0]:
                         q.start(80)
                         p.start(80)
                         turn_right()
@@ -143,7 +146,7 @@ def main():
         cv2.imshow("mask", mask)
         cv2.imshow("webcam", img)
 
-        cv2.waitKey(1)
+        cv2.waitKey(1) # 1 second delay between each turn
 
 
 if __name__ == '__main__':
