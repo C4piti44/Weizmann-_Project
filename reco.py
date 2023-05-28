@@ -121,23 +121,25 @@ def main():
             for contour in contours:
                 area = cv2.contourArea(contour)  # the area of the object
                 if area > min_area_area:
-                    #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
-                    #object_position(img, contour) -> i don't have to open a window, it takes computation power.
-                    coords = get_coords(contour)
-                    center_p = center_point(contour)
-                    if left_boundry > center_p[0]:
-                        q.start(80)
-                        p.start(80)
-                        turn_left()
-                    elif right_boundry < center_p[0]:
-                        q.start(80)
-                        p.start(80)
-                        turn_right()
-                    else:
-                        velocity_of_the_robot = velocity(area)
-                        p.start(velocity_of_the_robot)
-                        q.start(velocity_of_the_robot)
-                        move_forward()
+                    approx = cv2.approxPolyDP(contour, 0.01 * cv2.arcLength(contour, True), True)# this function asstimate the geo shape of the contour
+                    if 5 > len(approx) > 2:
+                        #finding_shape(img, contour) -> it does nothing, i have no usage in it anymore
+                        #object_position(img, contour) -> i don't have to open a window, it takes computation power.
+                        coords = get_coords(contour)
+                        center_p = center_point(contour)
+                        if left_boundry > center_p[0]:
+                            q.start(80)
+                            p.start(80)
+                            turn_left()
+                        elif right_boundry < center_p[0]:
+                            q.start(80)
+                            p.start(80)
+                            turn_right()
+                        else:
+                            velocity_of_the_robot = velocity(area)
+                            p.start(velocity_of_the_robot)
+                            q.start(velocity_of_the_robot)
+                            move_forward()
                         
         cv2.imshow("mask", mask)
         cv2.imshow("webcam", img)
