@@ -35,24 +35,20 @@ def turn_right():
     GPIO.output(in2, GPIO.LOW)
     GPIO.output(in3, GPIO.HIGH)
 
-
 # Turns the robot left
 def turn_left():
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.LOW)
-
 
 # Drive forward
 def move_forward():
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
 
-
 # Drive backward
 def move_backwards():
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
-
 
 # variables to calculate the linear function
 min_area = 2500
